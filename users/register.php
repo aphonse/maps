@@ -1,3 +1,15 @@
+<?php
+session_start();
+if(isset($_SESSION['register_message'])){
+    echo $_SESSION['register_message'];
+
+}
+if(isset($_SESSION['register_error'])){
+    echo $_SESSION['register_error'];
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,12 +19,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Register or Login</title>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.cs/>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/navbar.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <style>
         html, body {
             /*background-color: #fff;*/
@@ -42,49 +57,63 @@
 </head>
 
 <body>
-<div class="topnav">
-    <a href="../index.php" class="active">GEOLIGHT CONSULT</a>
-    <div id="myLinks">
-        <a href="../about/about_us.php" class="btn btn-warning">About Us</a>
+<div class="mobile-container">
+    <div class="topnav">
+        <a href="../index.php" class="active">GEOLIGHT CONSULT</a>
+        <div id="myLinks">
+            <a href="../about/about_us.php" class="btn btn-warning">About Us</a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
-</div>
+    <div class="container">
+        <div style="display:<?php if (isset($_SESSION['showAlert'])) {
+            echo $_SESSION['showAlert'];
+        } else {
+            echo 'none';
+        } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+            <a type="button" class="close" data-dismiss="alert">&times;</a>
+            <strong><?php if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                } unset($_SESSION['showAlert']); ?></strong>
+        </div>
+    <div class="container">
+        <div class="row justify-content-center">
+                <h4 class="text-center text-info p-2">Register to buy maps!</h4>
+                <form action="signup_action.php" method="post" id="placeOrder">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Enter E-Mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="passwordrepeat" class="form-control" placeholder="Re-enter Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="register" value="REGISTER" class="btn btn-info btn-block">
+                    </div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="container" id="">
-            <h4 class="text-center text-info p-2">Register to buy maps!</h4>
-            <form action="signup_action.php" method="post" id="placeOrder">
-                <div class="form-group">
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Enter E-Mail" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="passwordrepeat" class="form-control" placeholder="Re-enter Password" required>
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="register" value="REGISTER" class="btn btn-info btn-block">
-                </div>
+                    <div class="form-group">
+                        <button name="login" class="btn btn-success btn-block" onclick="document.getElementById('id01').style.display='block'" ;">LOGIN</button>
 
-                <div class="form-group">
-                    <button name="login" class="btn btn-success btn-block" onclick="document.getElementById('id01').style.display='block'" ;">LOGIN</button>
-
-<!--                   <input type="button" name="login" value="LOGIN" class="btn btn-success btn-block">-->
-                </div>
-            </form>
+                        <!--                   <input type="button" name="login" value="LOGIN" class="btn btn-success btn-block">-->
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+
+
 <script>
     function myFunction() {
         var x = document.getElementById("myLinks");
@@ -262,8 +291,8 @@
                 <input type="checkbox"  checked="checked" name="remember"> Remember me
             </label>
             <input type="submit" value="Login" name="login" class="btn btn-primary btn-block">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
 
         </div>
 

@@ -5,7 +5,11 @@ if(!isset($_SESSION))
 }
 require 'db.php';
 global $conn;
-$user=$_SESSION['user'];
+if (isset($_SESSION['user'])){
+    $user = $_SESSION['user'];
+}else{
+    $user=$_SESSION['timestamp'];
+}
 // Get no.of items available in the cart table
 if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
     $stmt = $conn->prepare("SELECT * FROM cart where user ='$user' AND status='0'") or die(mysqli_error($conn));

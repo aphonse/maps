@@ -3,7 +3,7 @@ session_start();
 require 'db.php';
 global $conn;
 $price_per_map=5000;
-if(isset($_SESSION['user']))
+if(isset($_SESSION['timestamp']))
 {
     ?>
     <!DOCTYPE html>
@@ -34,7 +34,8 @@ if(isset($_SESSION['user']))
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
-                background-size: cover;            }
+                background-size: cover;
+            }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -46,10 +47,10 @@ if(isset($_SESSION['user']))
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a href="index.php" class="active">GEOLIGHT CONSULT</a>
+            <a href="index.php" class="active"><img src="pictures/logo.jpeg" width="45" height="45" alt="Logo">&nbsp GEOLIGHT CONSULT</a>
             <div id="myLinks">
-                <a href="downloads/maps.php" class="btn btn-secondary">My Maps</a>
-                <a href="users/logout.php" class="btn btn-danger">Logout</a>
+                <a href="downloads/maps.php" class="btn btn-secondary">My Orders</a>
+
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
@@ -71,8 +72,9 @@ if(isset($_SESSION['user']))
                     </div>
                     &nbsp;
                     <h2 class="text-center text-danger m-0">Maps in your cart!</h2><br>
+
                     <div class="table-responsive mt-2" id="container">
-                        <table class="table table-bordered table-striped text-center">
+                        <table class="table table-bordered table-striped text-center container">
                             <thead>
                             <tr>
                                 <th></th>
@@ -85,7 +87,11 @@ if(isset($_SESSION['user']))
                             </thead>
                             <tbody>
                             <?php
-                            $user=$_SESSION['user'];
+                            if (isset($_SESSION['timestamp'])){
+                                $user = $_SESSION['timestamp'];
+                            }else{
+                                $user=$_SESSION['contact'];
+                            }
                             $stmt = $conn->prepare("SELECT * FROM cart where user ='$user' and status='0'");
                             $stmt->execute() or die(mysqli_error($conn));
                             $result = $stmt->get_result();
@@ -119,19 +125,25 @@ if(isset($_SESSION['user']))
 
                     </div>
                     &nbsp;
+                    <div class="center">
+                        <form method="post" name="form1" action="checkout.php">
+                            <input type="email" size="30"  placeholder="Enter Email address" name="email" id="email">
+                            <input type="tel" size="30"  placeholder="Enter WhatsApp number" required name="phone" id="phone">
+                            <button id="checkout_button" title="Enter email or phone number to proceed" type="submit" class="btn btn-info"><i class="far fa-credit-card"></i>&nbsp;Checkout</button>
+                            <a href="index.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy More
+                                Maps</a>
+                        </form>
 
-                </div>
-                &nbsp;
-                <div class="center">
-                    <a href="index.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Buy More
-                        Maps</a>
-                    &nbsp;
-                    <a href="checkout.php" class="btn btn-info <?= ($grand_total > 1) ; ?>">
-                        <i class="far fa-credit-card"></i>&nbsp;&nbsp;Checkout</a>
+                        &nbsp;
+
+                    </div>
                 </div>
             </div>
+            &nbsp;
 
         </div>
+
+    </div>
 
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
@@ -170,6 +182,6 @@ if(isset($_SESSION['user']))
     </html>
     <?php
 }else{
-    header("Location:users/register.php?Login or Register");
+    header("Location:index.php");
     exit();}
 ?>

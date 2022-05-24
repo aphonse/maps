@@ -2,14 +2,8 @@
 session_start();
 require "../db.php";
 global $conn;
-if(isset($_SESSION['user']))
+if(isset($_SESSION['timestamp']))
 {
-    if (isset($_GET['paypal'])) {
-        $_SESSION['paypal'] = "Thank you for your payment!";
-        $user = $_SESSION['user'];
-        $sql = "UPDATE cart SET status='1' WHERE user='$user'";
-        $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-    }
     ?>
     <!DOCTYPE html>
     <html>
@@ -18,7 +12,7 @@ if(isset($_SESSION['user']))
         <meta name="author" content="Aphonse Kiprop">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>My Maps</title>
+        <title>My Orders</title>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -53,10 +47,9 @@ if(isset($_SESSION['user']))
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a href="../index.php" class="active">GEOLIGHT CONSULT</a>
+            <a href="../index.php" class="active"><img src="../pictures/logo.jpeg" width="45" height="45" alt="Logo">&nbsp GEOLIGHT CONSULT</a>
             <div id="myLinks">
-                <a href="../cart.php" class="btn btn-secondary">My Cart</a>
-                <a href="../users/logout.php" class="btn btn-danger">Logout</a>
+                <a href="../cart.php" class="btn btn-info">My Cart</a>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
@@ -72,12 +65,16 @@ if(isset($_SESSION['user']))
                         echo 'none';
                     } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong><?php if (isset($_SESSION['message'])) {
-                                echo $_SESSION['message'];
+                        <strong><?php if (isset($_SESSION['mail_message'])) {
+                                echo $_SESSION['mail_message'];
                             } unset($_SESSION['showAlert']); ?></strong>
                     </div>
                     &nbsp;
-                    <h2 class="text-center text-dark m-0">Available Maps for download</h2><br>
+                    <h2 class="text-center text-dark m-0">Maps on Order</h2><br>
+                    <form method="post" action="search_order.php">
+                        <input type="text" size="40" placeholder="Enter Email or Phone to see your orders" required name="search_order">
+                        <input type="submit" name="search_submit">
+                    </form>
                     <div class="table-responsive mt-2" id="container">
                         <table class="table table-bordered table-striped text-left">
                             <thead>
@@ -90,7 +87,11 @@ if(isset($_SESSION['user']))
                             </thead>
                             <tbody>
                             <?php
-                            $user=$_SESSION['user'];
+                            if(isset($_SESSION['contact'])){
+                                $user=$_SESSION['contact'];
+                            }else{
+                                $user=$_SESSION['timestamp'];
+                            }
                             $stmt = $conn->prepare("SELECT * FROM cart where user ='$user' and status='1'");
                             $stmt->execute() or die(mysqli_error($conn));
                             $result = $stmt->get_result();
@@ -104,18 +105,44 @@ if(isset($_SESSION['user']))
                                     <?php
                                     $map_name=$row['map_name'];
                                     $county=$row['county'];
-                                    $filename="downloads/maps/".$county."/".$map_name;
+                                    //Fetch map in DB
+
+                                    $filename=$county."/".$map_name;
+                                    //                                    $filename=$map_name;
                                     $count=$count+1;
+                                    $link="http://localhost/maps/".$filename;
+                                    //                                    $link = "<a href='maps.php?link=$filename'> $filename </a><br />";
+                                    //- the missing closing brace
                                     ?>
                                     <td>
-                                        <a href="http://localhost/maps/<?php echo $filename?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-download-alt"></span>
-                                            Download</a>
+
+                                        <!--                                        <form method="get" action="maps.php">-->
+                                        <!--                                            <a href="../downloads/maps.php?file=<?php echo $filename;?>" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-download-alt"></span>-->
+                                        <!--                                                Download</a>-->
+                                        <!--                                            <button type="submit" name="download">Download</button>-->
+                                        <!--                                        </form>-->
                                     </td>
                                 </tr>
 
                             <?php
                             endwhile;
+                            if(!empty($_GET['file'])) {
+                                $filename=basename($_GET['file']);
+                                $filepath='maps/'.$county."/".$filename;
+                                if (file_exists($filepath)) {
+//                                    header("Cache-Control: public");
+//                                    header('Content-Description: File Transfer');
+//                                    header("Content-Disposition: attachment; filename=$filename");
+//                                    header("Content-Type: application/pdf");
+//                                    header("Content-Transfer-Encoding: binary");
 
+//                                    readfile($filepath);
+                                    exit;
+                                }
+                                else{
+                                    // echo "Error254 hgy";
+                                }
+                            }
                             ?>
 
                             </tbody>
@@ -143,6 +170,6 @@ if(isset($_SESSION['user']))
     </html>
     <?php
 }else{
-    header("Location:../users/register.php?Login or Register");
+    header("Location:../index.php");
     exit();}
 ?>

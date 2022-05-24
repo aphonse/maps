@@ -19,7 +19,7 @@
             border-radius: 10px;
         }
         html, body {
-                /*background-color: #fff;*/
+            /*background-color: #fff;*/
             background-color: #3c6b93;
             color: #636b6f;
             font-family: 'Nunito', sans-serif;
@@ -36,33 +36,42 @@
 </head>
 <body>
 
-    <!-- Simulate a smartphone / tablet -->
-    <div class="mobile-container">
+<!-- Simulate a smartphone / tablet -->
+<div class="mobile-container">
 
-        <!-- Top Navigation Menu -->
-        <div class="topnav">
-            <a href="../index.php" class="active">GEOLIGHT CONSULT</a>
-            <div id="myLinks">
-                <a href="#" class="btn btn-warning">Contact Us</a>
-            </div>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
+    <!-- Top Navigation Menu -->
+    <div class="topnav">
+        <a href="../index.php" class="active"><img src="../pictures/logo.jpeg" width="45" height="45" alt="Logo">&nbsp GEOLIGHT CONSULT</a>
+        <div id="myLinks">
         </div>
-        <!-- End smartphone / tablet look -->
-        <div class="container mt-5" id="container">
-            <a>About<br>us<br> and<br> contact<br> info<br> here </a>
-        </div>
-        </div>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myLinks");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <!-- End smartphone / tablet look -->
+    <div class="container mt-5" id="container">
+        <p style="font-size:1.6vw">
+            At Geolight Consult we can fulfil all your Geospatial data related requirements. We have an outstanding amount of high-quality GIS maps covering different parts of the country. Our GIS data covers a wide range of sectors/industries e.g. Thematic maps, Election Maps, Cadastral Maps etc.</P>
+        <p style="font-size:1.6vw">
+            Our mission is to provide customers with accurate GIS data to assist them make informed decisions.
+        </p>
+        <br><br><br>
+        <p style="font-size:1.6vw">
+            Have any queries or complaints please contact us at;<br>
+            Email: <b><a href="mailto:1450kenya@gmail.com">1450kenya@gmail.com</a></b>
+        </p>
+
+    </div>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
         }
-    </script>
+    }
+</script>
 </body>
 </html>

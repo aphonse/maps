@@ -1,10 +1,13 @@
 <?php
 session_start();
-if(isset($_SESSION['user']))
+if(!isset($_SESSION['timestamp']))
 {
-    require_once "db.php";
-    global $conn;
-    ?>
+    $_SESSION['timestamp']=time();
+}
+$time=$_SESSION['timestamp'];
+require_once "db.php";
+global $conn;
+?>
 
     <!DOCTYPE html>
     <html>
@@ -13,7 +16,9 @@ if(isset($_SESSION['user']))
         <meta name="author" content="Aphonse Kiprop">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Maps Home</title>
+        <meta name="description" content="At Geolight Consult we provide high quality and innovative maps covering the whole country(Kenya). Our goal is to provide our users with information/decisions made by kenyans at ward level that collectively have shaped our country. Our maps are suitable for all people."/>
+        <title>Geolight Consult for buying maps</title>
+        <link rel="shortcut icon" href="pictures/logo.jpeg">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -48,12 +53,22 @@ if(isset($_SESSION['user']))
 
         <!-- Top Navigation Menu -->
         <div class="topnav">
-            <a href="#home" class="active">GEOLIGHT CONSULT</a>
+            <a href="#home" class="active"><img src="pictures/logo.jpeg" width="45" height="45" alt="Logo">&nbsp GEOLIGHT CONSULT</a>
             <div id="myLinks">
-                    <a href="downloads/maps.php" class="btn btn-success">My maps</a>
-                    <a href="about/about_us.php" class="btn btn-info">Contact</a>
-                    <a href="about/about_us.php" class="btn btn-secondary">About Us</a>
-                    <a href="users/logout.php" class="btn btn-danger">Logout</a>
+                <a href="maps/" class="btn btn-warning">My maps</a>
+                <a href="about/" class="btn btn-info">Contact</a>
+                <a href="about/" class="btn btn-secondary">About Us</a>
+                <?php
+                // if(isset($_SESSION['user'])){
+                //     ?>
+                <!--//     <a href="users/logout.php" class="btn btn-danger">Logout</a>-->
+                <?php
+                // }else{
+                //     ?>
+                <!--//     <a href="users/register.php" class="btn btn-success">Login</a>-->
+                <?php
+                // }
+                ?>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
@@ -70,7 +85,7 @@ if(isset($_SESSION['user']))
 
                         <h4 class=" text-dark m-0">At Geolight Consult we provide high quality and innovative
                             maps covering the whole country(Kenya). Our goal is to provide our users with information/decisions made by kenyans at
-                            ward level that collectively have shaped our country. Our maps are suitable for all people in kenya
+                            ward level that collectively have shaped our country. Our maps are suitable for all people.
                         </h4>
                     </div>
                     <div class="card-body">
@@ -88,6 +103,10 @@ if(isset($_SESSION['user']))
                                     }
                                     ?>
                                 </select>
+
+                                <input type="checkbox" id="check" name="check" onchange="document.getElementById('checkButton').disabled = !this.checked;">
+                                <label for="check">Add all wards of this County to cart</label><br>
+                                <input type = "submit" id = "checkButton" disabled value = "submit"/>
                             </div>
                             <div class="form-group">
                                 <label for="constituency">Constituency</label>
@@ -116,9 +135,10 @@ if(isset($_SESSION['user']))
     </div>
 
     <script>
+        var county_id;
         $(document).ready(function() {
             $('#county-dropdown').on('change', function() {
-                var county_id = this.value;
+                county_id = this.value;
                 $.ajax({
                     url: "constituencies-by-county.php",
                     type: "POST",
@@ -132,6 +152,20 @@ if(isset($_SESSION['user']))
                     }
                 });
             });
+            $('#checkButton').click(function() {
+                alert("You are about to add all wards of selected county to your cart ");
+                $.ajax({
+                    url: "process.php",
+                    type: "POST",
+                    data: {
+                        checked_id: county_id
+                    },
+                    cache: false,
+                    success: function(result){
+                    }
+                });
+            });
+
             $('#constituency-dropdown').on('change', function() {
                 var constituency_id = this.value;
                 $.ajax({
@@ -185,10 +219,17 @@ if(isset($_SESSION['user']))
             }
         }
     </script>
+    <script type = "text/javascript">
+        function show(){
+            // alert("You have selected the county " + county_id);
+        }
+    </script>
     </body>
     </html>
-    <?php
-}else{
-    header("Location:users/register.php?Login or Register");
-    exit();}
+<?php
+
+//else{
+//     header("Location:users/register.php");
+//     exit();
+//}
 ?>

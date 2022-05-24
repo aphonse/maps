@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 01:27 PM
+-- Generation Time: Apr 02, 2022 at 09:44 AM
 -- Server version: 8.0.19
 -- PHP Version: 7.3.8
 
@@ -67,7 +67,15 @@ INSERT INTO `cart` (`id`, `county`, `constituency`, `ward`, `map_name`, `user`, 
 (109, 'BUNGOMA', 'KABUCHAI', 'KABUCHAI/CHWELE', 'ward.KABUCHAICHWELE.pdf', 'alphonsekiprop@gmail.com', 1),
 (114, 'THARAKA - NITHI', 'MAARA', 'MITHERU', 'ward.MITHERU.pdf', 'alphonsekiprop@gmail.com', 1),
 (141, 'ISIOLO', 'ISIOLO SOUTH', 'SERICHO', 'ward.SERICHO.pdf', 'alphonsekiprop@gmail.com', 1),
-(142, 'WAJIR', 'ELDAS', 'ELNUR/TULA TULA', 'ward.ELNURTULA TULA.pdf', 'alphonsekiprop@gmail.com', 0);
+(142, 'WAJIR', 'ELDAS', 'ELNUR/TULA TULA', 'ward.ELNURTULA TULA.pdf', 'alphonsekiprop@gmail.com', 1),
+(143, 'KAJIADO', 'KAJIADO NORTH', 'OLOOLUA', 'ward.OLOOLUA.pdf', 'alphonsekiprop@gmail.com', 1),
+(144, 'KAJIADO', 'KAJIADO CENTRAL', 'MATAPATO SOUTH', 'ward.MATAPATO SOUTH.pdf', 'alphonsekiprop@gmail.com', 1),
+(145, 'EMBU', 'MBEERE NORTH', 'MUMINJI', 'ward.MUMINJI.pdf', 'alphonsekiprop@gmail.com', 1),
+(146, 'BARINGO', 'ELDAMA RAVINE', 'LEMBUS KWEN', 'ward.LEMBUS KWEN.pdf', 'snm@gmail.com', 0),
+(148, 'BARINGO', 'ELDAMA RAVINE', 'LEMBUS KWEN', 'ward.LEMBUS KWEN.pdf', 'rlagat06@gmail.com', 1),
+(149, 'HOMA BAY', 'KABONDO KASIPUL', 'KABONDO WEST', 'ward.KABONDO WEST.pdf', 'rlagat06@gmail.com', 1),
+(150, 'ISIOLO', 'ISIOLO SOUTH', 'KINNA', 'ward.KINNA.pdf', 'rlagat06@gmail.com', 1),
+(153, 'EMBU', 'MANYATTA', 'KIRIMARI', 'ward.KIRIMARI.pdf', 'rlagat06@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -397,7 +405,7 @@ INSERT INTO `counties` (`id`, `name`) VALUES
 (2, 'BOMET'),
 (3, 'BUNGOMA'),
 (4, 'BUSIA'),
-(5, 'ELGEYO/MARAKWET'),
+(5, 'ELGEYO MARAKWET'),
 (6, 'EMBU'),
 (7, 'GARISSA'),
 (8, 'HOMA BAY'),
@@ -916,16 +924,16 @@ INSERT INTO `maps` (`id`, `ward`, `county`, `constituency`, `map_name`) VALUES
 (454, 'LOWER KAEWA/KAANI', 'MACHAKOS', 'KATHIANI', 'ward.LOWER KAEWAKAANI.pdf'),
 (455, 'MITABONI', 'MACHAKOS', 'KATHIANI', 'ward.MITABONI.pdf'),
 (456, 'UPPER KAEWA/IVETI', 'MACHAKOS', 'KATHIANI', 'ward.UPPER KAEWAIVETI.pdf'),
-(457, 'EMSOO', 'ELGEYO/MARAKWET', 'KEIYO NORTH', 'ward.EMSOO.pdf'),
-(458, 'KAMARINY', 'ELGEYO/MARAKWET', 'KEIYO NORTH', 'ward.KAMARINY.pdf'),
-(459, 'KAPCHEMUTWA', 'ELGEYO/MARAKWET', 'KEIYO NORTH', 'ward.KAPCHEMUTWA.pdf'),
-(460, 'TAMBACH', 'ELGEYO/MARAKWET', 'KEIYO NORTH', 'ward.TAMBACH.pdf'),
-(461, 'CHEPKORIO', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.CHEPKORIO.pdf'),
-(462, 'KABIEMIT', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.KABIEMIT.pdf'),
-(463, 'KAPTARAKWA', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.KAPTARAKWA.pdf'),
-(464, 'METKEI', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.METKEI.pdf'),
-(465, 'SOY NORTH', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.SOY NORTH.pdf'),
-(466, 'SOY SOUTH', 'ELGEYO/MARAKWET', 'KEIYO SOUTH', 'ward.SOY SOUTH.pdf'),
+(457, 'EMSOO', 'ELGEYO MARAKWET', 'KEIYO NORTH', 'ward.EMSOO.pdf'),
+(458, 'KAMARINY', 'ELGEYO MARAKWET', 'KEIYO NORTH', 'ward.KAMARINY.pdf'),
+(459, 'KAPCHEMUTWA', 'ELGEYO MARAKWET', 'KEIYO NORTH', 'ward.KAPCHEMUTWA.pdf'),
+(460, 'TAMBACH', 'ELGEYO MARAKWET', 'KEIYO NORTH', 'ward.TAMBACH.pdf'),
+(461, 'CHEPKORIO', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.CHEPKORIO.pdf'),
+(462, 'KABIEMIT', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.KABIEMIT.pdf'),
+(463, 'KAPTARAKWA', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.KAPTARAKWA.pdf'),
+(464, 'METKEI', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.METKEI.pdf'),
+(465, 'SOY NORTH', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.SOY NORTH.pdf'),
+(466, 'SOY SOUTH', 'ELGEYO MARAKWET', 'KEIYO SOUTH', 'ward.SOY SOUTH.pdf'),
 (467, 'CHEPTIRET/KIPCHAMO', 'UASIN GISHU', 'KESSES', 'ward.CHEPTIRETKIPCHAMO.pdf'),
 (468, 'RACECOURSE', 'UASIN GISHU', 'KESSES', 'ward.RACECOURSE.pdf'),
 (469, 'TARAKWA', 'UASIN GISHU', 'KESSES', 'ward.TARAKWA.pdf'),
@@ -1301,16 +1309,16 @@ INSERT INTO `maps` (`id`, `ward`, `county`, `constituency`, `map_name`) VALUES
 (838, 'KIMORORI/WEMPA', 'MURANG\'A', 'MARAGWA', 'ward.KIMORORIWEMPA.pdf'),
 (839, 'MAKUYU', 'MURANG\'A', 'MARAGWA', 'ward.MAKUYU.pdf'),
 (840, 'NGINDA', 'EMBU', 'MANYATTA', 'ward.NGINDA.pdf'),
-(841, 'EMBOBUT / EMBULOT', 'ELGEYO/MARAKWET', 'MARAKWET EAST', 'ward.EMBOBUT _ EMBULOT.pdf'),
-(842, 'ENDO', 'ELGEYO/MARAKWET', 'MARAKWET EAST', 'ward.ENDO.pdf'),
-(843, 'KAPYEGO', 'ELGEYO/MARAKWET', 'MARAKWET EAST', 'ward.KAPYEGO.pdf'),
-(844, 'SAMBIRIR', 'ELGEYO/MARAKWET', 'MARAKWET EAST', 'ward.SAMBIRIR.pdf'),
-(845, 'ARROR', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.ARROR.pdf'),
-(846, 'CHERANG\'ANY/CHEBORORWA', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.CHERANG\'ANY_CHEBORORWA.pdf'),
-(847, 'KAPSOWAR', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.KAPSOWAR.pdf'),
-(848, 'LELAN', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.LELAN.pdf'),
-(849, 'MOIBEN/KUSERWO', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.MOIBEN_KUSERWO.pdf'),
-(850, 'SENGWER', 'ELGEYO/MARAKWET', 'MARAKWET WEST', 'ward.SENGWER.pdf'),
+(841, 'EMBOBUT / EMBULOT', 'ELGEYO MARAKWET', 'MARAKWET EAST', 'ward.EMBOBUT _ EMBULOT.pdf'),
+(842, 'ENDO', 'ELGEYO MARAKWET', 'MARAKWET EAST', 'ward.ENDO.pdf'),
+(843, 'KAPYEGO', 'ELGEYO MARAKWET', 'MARAKWET EAST', 'ward.KAPYEGO.pdf'),
+(844, 'SAMBIRIR', 'ELGEYO MARAKWET', 'MARAKWET EAST', 'ward.SAMBIRIR.pdf'),
+(845, 'ARROR', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.ARROR.pdf'),
+(846, 'CHERANG\'ANY/CHEBORORWA', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.CHERANG\'ANY_CHEBORORWA.pdf'),
+(847, 'KAPSOWAR', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.KAPSOWAR.pdf'),
+(848, 'LELAN', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.LELAN.pdf'),
+(849, 'MOIBEN/KUSERWO', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.MOIBEN_KUSERWO.pdf'),
+(850, 'SENGWER', 'ELGEYO MARAKWET', 'MARAKWET WEST', 'ward.SENGWER.pdf'),
 (851, 'EKALAKALA', 'MACHAKOS', 'MASINGA', 'ward.EKALAKALA.pdf'),
 (852, 'KIVAA', 'MACHAKOS', 'MASINGA', 'ward.KIVAA.pdf'),
 (853, 'MASINGA CENTRAL', 'MACHAKOS', 'MASINGA', 'ward.MASINGA CENTRAL.pdf'),
@@ -1936,7 +1944,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`) VALUES
 (5, 'patrick', 'patrick@maina', '0725616871', '$2y$10$PGC/Pk/YcizIgGDiNXsEXuAqNQ7jV24vksd0v1y/2dy1d0bKyepmq'),
 (6, 'kagwe', 'kagwe@gmail.com', '66565576', '$2y$10$D6Y5htDU1MhZUo758RFDFeCEEVMx1.lh5e7eRsx81Pk4BCGG78JN2'),
 (7, 'kagwe', 'snm@gmail.com', '66565576', '$2y$10$PofAX6G6hV6TL7aT1.o7Y.KB6mDRWj69xnLzaXlyobtuW87aGD8sW'),
-(8, 'benny', 'benny@gmail.com', '12334567687', '$2y$10$oAdD6GbKWNe8SC6P8bzK1OW5EQdwJq28IUSFzb8W2fepsHFtrRbf6');
+(8, 'benny', 'benny@gmail.com', '12334567687', '$2y$10$oAdD6GbKWNe8SC6P8bzK1OW5EQdwJq28IUSFzb8W2fepsHFtrRbf6'),
+(9, 'Robert', 'rlagat06@gmail.com', 'o724980544', '$2y$10$03yCTnXgfdo/cmUWbcxYGuE655UrPJ53jsonx0xXhTGi0RrU89d7i');
 
 -- --------------------------------------------------------
 
@@ -3456,7 +3465,7 @@ ALTER TABLE `wards`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `maps`
@@ -3468,7 +3477,7 @@ ALTER TABLE `maps`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
