@@ -5,7 +5,7 @@ if(!isset($_SESSION))
 }
 $servername='localhost';
 $username='root';
-$password='adm10722';
+$password='';
 $dbname = "counties";
 $conn= mysqli_connect($servername,$username,$password,$dbname);
 if(!$conn){
